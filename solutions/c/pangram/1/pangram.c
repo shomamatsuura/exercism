@@ -1,0 +1,23 @@
+#include "pangram.h"
+#include <string.h>
+
+bool is_pangram(const char *sentence){
+    if(sentence == NULL || strlen(sentence) < 26) return false;
+
+    size_t sentence_len = strlen(sentence);
+    bool alphabet_array[26] = {false};
+    for(size_t i = 0; i < sentence_len; i++){
+            char ascii = sentence[i];
+            if(ascii >= 65 && ascii <= 90){
+                // Upper canse
+                alphabet_array[ascii-65] = true;
+            } else if(ascii >= 97 && ascii <= 122){
+                // Lower canse
+                alphabet_array[ascii-97] = true;
+            }
+    }
+    for(int i = 0; i < 26; i++){
+        if(!alphabet_array[i]) return false;
+    }
+    return true;
+}
